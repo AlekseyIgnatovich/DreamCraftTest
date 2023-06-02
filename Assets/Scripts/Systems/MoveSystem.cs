@@ -7,30 +7,23 @@ public class MoveSystem : IEcsInitSystem, IEcsRunSystem
 
     private EcsFilter _playersFilter;
         
-    private EcsPool<Position> _positions;
-    private EcsPool<TransformReference> _transforms;
-    
+    private EcsPool<Player> _players;
+
     public void Init(IEcsSystems systems)
     {
         var world = systems.GetWorld();
-
         _playersFilter = world.Filter<Player>().End();
-            
-        _positions = world.GetPool<Position>();
-        _transforms = world.GetPool<TransformReference>();
+        _players = world.GetPool<Player>();
     }
         
     public void Run(IEcsSystems systems)
     {
         foreach (var entity in _playersFilter)
         {
-            ref var transform = ref _transforms.Get(entity);
-            ref var position = ref _positions.Get(entity);
+            ref var player = ref _players.Get(entity);
             
             var step = Speed * Time.deltaTime * Vector3.forward;
-            position.Value += step;
-
-            transform.Transform.position = position.Value;
+            player.Transform.position += step;
         }
     }
 }

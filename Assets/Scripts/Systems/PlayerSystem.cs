@@ -1,10 +1,9 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-public class PlayerSystem : IEcsInitSystem
+public class PlayerSystem : IEcsInitSystem //ToDo: в одну систему с движением 
 {
 	private EcsPool<Player> _players;
-	private EcsPool<Position> _positions;
 
 	public void Init(IEcsSystems systems)
 	{
@@ -12,14 +11,9 @@ public class PlayerSystem : IEcsInitSystem
 		int playerEntity = world.NewEntity();
 		
 		_players = world.GetPool<Player>();
-		_positions = world.GetPool<Position>();
 		
-		_players.Add(playerEntity);
-		ref var position = ref _positions.Add(playerEntity);
-		position.Value = Vector3.zero;
-		
-		var car = GameObject.FindObjectOfType<Car>();
-		ref var transform = ref world.GetPool<TransformReference>().Add(playerEntity);
-		transform.Transform = car.transform;
+		ref var player = ref _players.Add(playerEntity);
+		var car = GameObject.FindObjectOfType<CarView>(); //ToDo
+		player.Transform = car.transform;
 	}
 }

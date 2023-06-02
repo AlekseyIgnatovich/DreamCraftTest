@@ -1,7 +1,6 @@
-
 using UnityEngine;
 
-public struct TransformReference
+public struct RoadPart
 {
 	public Transform Transform;
 }

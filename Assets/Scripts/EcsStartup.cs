@@ -3,29 +3,34 @@ using UnityEngine;
 
 sealed class EcsStartup : MonoBehaviour
 {
-    EcsWorld _world;
-    IEcsSystems _systems;
+    private EcsWorld _world;
+    private IEcsSystems _systems;
 
-    void Start()
+    private PoolService _poolService;
+
+    private void Start()
     {
+        SetupPool();
+
         _world = new EcsWorld();
 
         _systems = new EcsSystems(_world);
         _systems
             .Add(new PlayerSystem())
             .Add(new MoveSystem())
+            .Add(new RoadSystem(_poolService))
 #if UNITY_EDITOR
             .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
             .Init();
     }
 
-    void Update()
+    private void Update()
     {
         _systems?.Run();
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         if (_systems != null)
         {
@@ -38,5 +43,11 @@ sealed class EcsStartup : MonoBehaviour
             _world.Destroy();
             _world = null;
         }
+    }
+
+    private void SetupPool()
+    {
+        _poolService = new PoolService();
+        _poolService.AddPool<RoadPartView>("RoadParts/Road", 10, 10);
     }
 }
