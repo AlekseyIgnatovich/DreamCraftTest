@@ -48,6 +48,12 @@ sealed class EcsStartup : MonoBehaviour
     private void SetupPool()
     {
         _poolService = new PoolService();
-        _poolService.AddPool<RoadPartView>("RoadParts/Road", 10, 10);
+        
+        _poolService.AddPool<RoadPartView>(new []{
+            "RoadParts/Road 1",
+            "RoadParts/Road 2",
+            "RoadParts/Road 3",
+            "RoadParts/Road 4",
+        }, 10, 10);
     }
 }

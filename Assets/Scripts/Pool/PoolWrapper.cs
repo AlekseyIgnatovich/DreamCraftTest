@@ -8,10 +8,10 @@ public class PoolWrapper<T> where T : Component
 
 	public IObjectPool<T> Pool;
 
-	private string _prefabPath;
+	private string[] _prefabPath;
 	private int count = 0;
 
-	public PoolWrapper(string prefabPath, int defaultCapacity, int maxPoolSize)
+	public PoolWrapper(string[] prefabPath, int defaultCapacity, int maxPoolSize)
 	{
 		_prefabPath = prefabPath;
 		Pool = new ObjectPool<T>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, defaultCapacity, maxPoolSize);
@@ -20,9 +20,9 @@ public class PoolWrapper<T> where T : Component
 	T CreatePooledItem()
 	{
 		count++;
-		Debug.LogError("Create " + _prefabPath + " " + count);
-
-		var prefab = Resources.Load(_prefabPath);
+		count %= _prefabPath.Length;
+		
+		var prefab = Resources.Load(_prefabPath[count]);
 		var gameObject = GameObject.Instantiate(prefab);
 		return gameObject.GetComponent<T>();
 	}

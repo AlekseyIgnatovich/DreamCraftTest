@@ -7,7 +7,7 @@ public class PoolService
 {
 	private Dictionary<Type, object> _pools = new ();
 	
-	public void AddPool<T>(string path, int capacity, int maxPoolSize) where T: Component
+	public void AddPool<T>(string[] path, int capacity, int maxPoolSize) where T: Component
 	{
 		var pool = new PoolWrapper<T>(path, capacity, maxPoolSize);
 		
