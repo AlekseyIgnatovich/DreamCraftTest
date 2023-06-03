@@ -7,6 +7,7 @@ sealed class EcsStartup : MonoBehaviour
     private IEcsSystems _systems;
 
     private PoolService _poolService;
+    private HudPresenter _hudPresenter;
 
     private void Start()
     {
@@ -19,10 +20,13 @@ sealed class EcsStartup : MonoBehaviour
             .Add(new PlayerSystem())
             .Add(new MoveSystem())
             .Add(new RoadSystem(_poolService))
+            .Add(new ScoresSystem())
 #if UNITY_EDITOR
             .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
             .Init();
+
+        _hudPresenter = new HudPresenter(FindObjectOfType<Hud>(), _world);
     }
 
     private void Update()
