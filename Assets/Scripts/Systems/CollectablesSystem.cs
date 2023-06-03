@@ -22,7 +22,7 @@ public class CollectablesSystem : IEcsInitSystem, IEcsRunSystem
         var world = systems.GetWorld();
 
         _filter = world.Filter<Collectable>().Inc<CollidePlayer>().End();
-        _scoresfilter = world.Filter<Scores>().Inc<ScoresText>().End();
+        _scoresfilter = world.Filter<Scores>().Inc<ScoresText>().Inc<Player>().End();
 
         _collectables = world.GetPool<Collectable>();
         _hits = world.GetPool<CollidePlayer>();

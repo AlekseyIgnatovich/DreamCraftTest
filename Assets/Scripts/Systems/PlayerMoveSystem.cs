@@ -5,26 +5,26 @@ public class PlayerMoveSystem : IEcsInitSystem, IEcsRunSystem
 {
     private EcsFilter _playersFilter;
     private EcsFilter _maneuverFilter;
-        
+
     private EcsPool<Player> _players;
     private EcsPool<Maneuver> _maneuvers;
-    
+
     public void Init(IEcsSystems systems)
     {
         var world = systems.GetWorld();
         _playersFilter = world.Filter<Player>().End();
         _maneuverFilter = world.Filter<Maneuver>().End();
-        
+
         _players = world.GetPool<Player>();
-        _maneuvers =  world.GetPool<Maneuver>();
+        _maneuvers = world.GetPool<Maneuver>();
     }
-        
+
     public void Run(IEcsSystems systems)
     {
         foreach (var playerEntity in _playersFilter)
         {
             ref var player = ref _players.Get(playerEntity);
-            
+
             var step = Constants.PlayerSpeed * Time.deltaTime * Vector3.forward;
             player.Transform.position += step;
 
@@ -48,7 +48,7 @@ public class PlayerMoveSystem : IEcsInitSystem, IEcsRunSystem
                         Debug.LogError("Unsupported Maneuver");
                         break;
                 }
-                
+
                 player.Transform.position = new Vector3(shift, player.Transform.position.y, player.Transform.position.z);
                 _maneuvers.Del(maneuverEntity);
             }

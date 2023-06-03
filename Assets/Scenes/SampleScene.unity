@@ -1021,6 +1021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044a9494731e6420681103048ac39312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftButton: {fileID: 1456122702}
-  rightButton: {fileID: 1428512266}
+  leftPressableButton: {fileID: 1456122702}
+  rightPressableButton: {fileID: 1428512266}
   scoresText: {fileID: 478644925}

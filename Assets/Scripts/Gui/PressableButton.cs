@@ -2,7 +2,7 @@ using System;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonWrapper: Button, IPointerDownHandler, IPointerUpHandler
+public class PressableButton: Button, IPointerDownHandler, IPointerUpHandler
 {
     public event Action OnPressDown;   
     public event Action OnPressUp;   

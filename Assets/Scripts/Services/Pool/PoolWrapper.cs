@@ -14,14 +14,15 @@ public class PoolWrapper<T> where T : Component
 	public PoolWrapper(string[] prefabPath, int defaultCapacity, int maxPoolSize)
 	{
 		_prefabPath = prefabPath;
-		Pool = new ObjectPool<T>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, defaultCapacity, maxPoolSize);
+		Pool = new ObjectPool<T>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject,
+			collectionChecks, defaultCapacity, maxPoolSize);
 	}
 
 	T CreatePooledItem()
 	{
 		count++;
 		count %= _prefabPath.Length;
-		
+
 		var prefab = Resources.Load(_prefabPath[count]);
 		var gameObject = GameObject.Instantiate(prefab);
 		return gameObject.GetComponent<T>();
