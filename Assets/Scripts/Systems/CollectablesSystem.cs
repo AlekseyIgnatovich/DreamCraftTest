@@ -6,7 +6,7 @@ public class CollectablesSystem : IEcsInitSystem, IEcsRunSystem
     private EcsFilter _scoresfilter;
 
     private EcsPool<Collectable> _collectables;
-    private EcsPool<CollidePlayer> _hits;
+    private EcsPool<HitPlayer> _hits;
     private EcsPool<Scores> _scores;
     private EcsPool<ScoresText> _scoresText;
 
@@ -21,11 +21,11 @@ public class CollectablesSystem : IEcsInitSystem, IEcsRunSystem
     {
         var world = systems.GetWorld();
 
-        _filter = world.Filter<Collectable>().Inc<CollidePlayer>().End();
+        _filter = world.Filter<Collectable>().Inc<HitPlayer>().End();
         _scoresfilter = world.Filter<Scores>().Inc<ScoresText>().Inc<Player>().End();
 
         _collectables = world.GetPool<Collectable>();
-        _hits = world.GetPool<CollidePlayer>();
+        _hits = world.GetPool<HitPlayer>();
 
         _scores = world.GetPool<Scores>();
         _scoresText = world.GetPool<ScoresText>();

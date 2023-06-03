@@ -1,1 +1,1 @@
-public struct CollidePlayer { }
+public struct HitPlayer { }
