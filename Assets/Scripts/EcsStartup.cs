@@ -19,8 +19,9 @@ sealed class EcsStartup : MonoBehaviour
         _systems
             .Add(new PlayerSystem())
             .Add(new MoveSystem())
-            .Add(new RoadSystem(_poolService))
+            .Add(new RoadGeneratorSystem(_poolService))
             .Add(new ScoresSystem())
+            .Add(new CollectablesSystem(_poolService))
 #if UNITY_EDITOR
             .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
 #endif
@@ -58,6 +59,10 @@ sealed class EcsStartup : MonoBehaviour
             "RoadParts/Road 2",
             "RoadParts/Road 3",
             "RoadParts/Road 4",
+        }, 10, 10);
+        
+        _poolService.AddPool<CollectableView>(new []{
+            "Collectable",
         }, 10, 10);
     }
 }

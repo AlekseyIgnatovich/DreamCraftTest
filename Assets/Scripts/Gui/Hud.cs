@@ -24,9 +24,4 @@ public class Hud : MonoBehaviour
         rightButton.OnPressDown += () => OnPressRightButton?.Invoke();
         rightButton.OnPressUp += () => OnFinishPress?.Invoke();
     }
-
-    public void SetupScores(string scores)
-    {
-        scoresText.text = scores;
-    }
 }

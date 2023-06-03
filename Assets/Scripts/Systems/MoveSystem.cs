@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class MoveSystem : IEcsInitSystem, IEcsRunSystem
 {
-    private const float Speed = 10f;//Todo
-    private const float ManeuversShift = 3f;//Todo
-    
     private EcsFilter _playersFilter;
     private EcsFilter _maneuverFilter;
         
@@ -28,7 +25,7 @@ public class MoveSystem : IEcsInitSystem, IEcsRunSystem
         {
             ref var player = ref _players.Get(playerEntity);
             
-            var step = Speed * Time.deltaTime * Vector3.forward;
+            var step = Constants.PlayerSpeed * Time.deltaTime * Vector3.forward;
             player.Transform.position += step;
 
             foreach (var maneuverEntity in _maneuverFilter)
@@ -42,10 +39,10 @@ public class MoveSystem : IEcsInitSystem, IEcsRunSystem
                         shift = 0;
                         break;
                     case ManeuverDirection.Left:
-                        shift = -ManeuversShift;
+                        shift = -Constants.ManeuversShift;
                         break;
                     case ManeuverDirection.Right:
-                        shift = ManeuversShift;
+                        shift = Constants.ManeuversShift;
                         break;
                     default:
                         Debug.LogError("Unsupported Maneuver");
