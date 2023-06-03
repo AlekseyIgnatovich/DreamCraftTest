@@ -20,7 +20,6 @@ sealed class EcsStartup : MonoBehaviour
             .Add(new PlayerSystem())
             .Add(new MoveSystem())
             .Add(new RoadGeneratorSystem(_poolService))
-            .Add(new ScoresSystem())
             .Add(new CollectablesSystem(_poolService))
 #if UNITY_EDITOR
             .Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem())
