@@ -8,7 +8,6 @@ public class PlayerSystem : IEcsInitSystem
 		var world = systems.GetWorld();
 
 		var players = world.GetPool<Player>();
-
 		int playerEntity = world.NewEntity();
 		ref var player = ref players.Add(playerEntity);
 		var playerObject = GameObject.FindWithTag(Constants.PlayerTag); //ToDo
