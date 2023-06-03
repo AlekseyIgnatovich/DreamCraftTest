@@ -18,7 +18,7 @@ sealed class EcsStartup : MonoBehaviour
         _systems = new EcsSystems(_world);
         _systems
             .Add(new PlayerSystem())
-            .Add(new MoveSystem())
+            .Add(new PlayerMoveSystem())
             .Add(new RoadGeneratorSystem(_poolService))
             .Add(new CollectablesSystem(_poolService))
 #if UNITY_EDITOR

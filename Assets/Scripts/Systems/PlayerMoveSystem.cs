@@ -1,7 +1,7 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-public class MoveSystem : IEcsInitSystem, IEcsRunSystem
+public class PlayerMoveSystem : IEcsInitSystem, IEcsRunSystem
 {
     private EcsFilter _playersFilter;
     private EcsFilter _maneuverFilter;

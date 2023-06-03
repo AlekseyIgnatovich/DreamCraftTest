@@ -2,5 +2,5 @@ using UnityEngine;
 
 public struct RoadPart
 {
-	public Transform Transform;
+	public RoadPartView View;
 }

@@ -762,7 +762,6 @@ GameObject:
   - component: {fileID: 1149287716}
   - component: {fileID: 1149287715}
   - component: {fileID: 1149287714}
-  - component: {fileID: 1149287713}
   - component: {fileID: 1149287718}
   m_Layer: 0
   m_Name: Car
@@ -771,18 +770,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1149287713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149287712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 321c0f2df739649e2a0b93ab78cc8eb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1149287714
 BoxCollider:
   m_ObjectHideFlags: 0

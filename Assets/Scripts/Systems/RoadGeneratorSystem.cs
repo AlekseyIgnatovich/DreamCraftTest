@@ -42,19 +42,19 @@ public class RoadGeneratorSystem : IEcsInitSystem, IEcsRunSystem
             foreach (var roadEntity in _roadsFilter)
             {
                 var roadPart = _roadParts.Get(roadEntity);
-                var dist = roadPart.Transform.position.z - player.Transform.position.z;
+                var dist = roadPart.View.transform.position.z - player.Transform.position.z;
 
                 if (dist < -Constants.DestroyRoadDistance)
                 {
                     _poolService.GetPool<RoadPartView>()
-                        .Release(roadPart.Transform.GetComponent<RoadPartView>()); //ToDo
+                        .Release(roadPart.View.transform.GetComponent<RoadPartView>()); //ToDo
                     _roadParts.Del(roadEntity);
                 }
 
                 if (dist > maxDist)
                 {
                     maxDist = dist;
-                    maxPosition = roadPart.Transform.position;
+                    maxPosition = roadPart.View.transform.position;
                 }
             }
 
@@ -65,8 +65,8 @@ public class RoadGeneratorSystem : IEcsInitSystem, IEcsRunSystem
 
                 var roadEntity = world.NewEntity();
                 ref var roadPart = ref _roadParts.Add(roadEntity);
-                roadPart.Transform = _poolService.GetPool<RoadPartView>().Get().transform;
-                roadPart.Transform.position = roadPosition;
+                roadPart.View = _poolService.GetPool<RoadPartView>().Get();
+                roadPart.View.transform.position = roadPosition;
 
                 var collectablePosZ = maxPosition.z + Constants.RoadLength / 2;
                 int count = Random.Range(2, 6);

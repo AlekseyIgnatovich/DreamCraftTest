@@ -16,7 +16,7 @@ public class CollectableView : MonoBehaviour
       {
          if (_entity.Unpack(out EcsWorld unpackedWorld, out int unpackedWithWorld))
          {
-            var hits = unpackedWorld.GetPool<Hit>();
+            var hits = unpackedWorld.GetPool<CollidePlayer>();
             hits.Add(unpackedWithWorld);
          }
       }
