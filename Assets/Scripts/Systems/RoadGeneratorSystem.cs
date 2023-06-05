@@ -47,7 +47,7 @@ public class RoadGeneratorSystem : IEcsInitSystem, IEcsRunSystem
                 if (dist < -Constants.DestroyRoadDistance)
                 {
                     _poolService.GetPool<RoadPartView>()
-                        .Release(roadPart.View.transform.GetComponent<RoadPartView>()); //ToDo
+                        .Release(roadPart.View.transform.GetComponent<RoadPartView>());
                     _roadParts.Del(roadEntity);
                 }
 
